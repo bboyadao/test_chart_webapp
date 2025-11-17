@@ -1,4 +1,4 @@
-replicaCount: 3
+replicaCount: 1
 
 image:
   repository: bboyadao/test_webapp
@@ -73,6 +73,22 @@ tolerations: []
 
 affinity: {}
 
+#ingress:
+#  enabled: true
+#  className: "nginx"
+#  annotations: {}
+#    # kubernetes.io/ingress.class: nginx
+#    # kubernetes.io/tls-acme: "true"
+#  hosts:
+#    - host: webapp.triptolocs.com
+#      paths:
+#        - path: /
+#          pathType: ImplementationSpecific
+#  #  - secretName: chart-example-tls
+#  #    hosts:
+#  #      - chart-example.local
+
+
 ingress:
   enabled: true
   className: "nginx"
@@ -83,7 +99,9 @@ ingress:
     - host: webapp.triptolocs.com
       paths:
         - path: /
-          pathType: ImplementationSpecific
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+#            pathType: ImplementationSpecific
+          pathType: Prefix
+          backend:
+            service: interceptor-proxy
+            port:
+              number: 8080
