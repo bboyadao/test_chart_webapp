@@ -92,14 +92,13 @@ affinity: {}
 ingress:
   enabled: true
   className: "nginx"
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    http.keda.sh/host: webapp.triptolocs.com
   hosts:
     - host: webapp.triptolocs.com
       paths:
         - path: /
-#            pathType: ImplementationSpecific
           pathType: Prefix
           backend:
             service: interceptor-proxy
