@@ -16,7 +16,7 @@ spec:
     port: 8001
   replicas:
     min: 1
-    max: 10
+    max: 50
   scaledownPeriod: 300
   scalingMetric:
     requestRate:
