@@ -2,7 +2,7 @@ apiVersion: http.keda.sh/v1alpha1
 kind: HTTPScaledObject
 metadata:
   name: webapp-service-scaler
-  namespace: test-project
+  namespace: keda
 spec:
   hosts:
   - webapp.triptolocs.com
@@ -20,4 +20,4 @@ spec:
   scaledownPeriod: 300
   scalingMetric:
     requestRate:
-      targetValue: 1
+      targetValue: 20
